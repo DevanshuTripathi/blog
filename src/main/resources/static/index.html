@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogify — Write. Publish. Flex.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --accent: #38bdf8;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b, var(--bg));
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        nav a {
+            margin-left: 24px;
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 120px 10% 90px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .hero button {
+            background: var(--accent);
+            color: #020617;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hero button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            padding: 80px 8%;
+        }
+
+        .feature-card {
+            background: linear-gradient(180deg, #020617, var(--card));
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid #1f2933;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 90px 10%;
+            background: linear-gradient(180deg, transparent, #020617);
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Blogify</div>
+    <nav>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">Login</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Write. Publish. Build an Audience.</h1>
+    <p>
+        Blogify is a no-BS blogging platform for people who actually want to write,
+        not fight with editors, themes, and random plugins.
+    </p>
+    <a href="login" ><button>Start Writing Free</button></a>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h3>Distraction-Free Editor</h3>
+        <p>
+            Clean UI. Zero clutter. Your thoughts stay in your brain,
+            not lost between toolbars.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Lightning Fast</h3>
+        <p>
+            Pages load fast. Readers stay longer.
+            Google doesn’t rage-quit your site.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Built for Growth</h3>
+        <p>
+            Analytics, SEO-ready pages, and sharing tools that actually work.
+        </p>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Ready to Ship Your First Post?</h2>
+    <p>No credit card. No setup hell. Just start typing.</p>
+</section>
+
+<footer>
+    © 2026 Blogify. Made for writers, not headaches.
+</footer>
+
+</body>
+</html>
