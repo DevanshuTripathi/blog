@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogify — Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card: #020617;
+            --accent: #38bdf8;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --border: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b, var(--bg));
+            color: var(--text);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        nav a {
+            margin-left: 24px;
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 32px;
+            padding: 40px 8%;
+        }
+
+        /* Featured */
+        .featured {
+            background: linear-gradient(180deg, #020617, var(--panel));
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+
+        .featured span {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .featured h2 {
+            margin: 14px 0;
+            font-size: 1.8rem;
+        }
+
+        .featured p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .featured a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Posts */
+        .posts {
+            display: grid;
+            gap: 22px;
+        }
+
+        .post {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: linear-gradient(180deg, #020617, var(--panel));
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-4px);
+        }
+
+        .post small {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .post h3 {
+            font-size: 1.2rem;
+        }
+
+        .post p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .post a {
+            margin-top: 6px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .side-card {
+            background: linear-gradient(180deg, #020617, var(--panel));
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .side-card h4 {
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            background: #020617;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Blogify</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Write</a>
+        <a href="#">Profile</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </nav>
+</header>
+
+<div class="container">
+
+    <main>
+        <section class="featured">
+            <span>Featured</span>
+            <h2>Why Most Developers Never Finish Their Side Projects</h2>
+            <p>
+                Spoiler: it’s not motivation. It’s scope creep, bad planning,
+                and chasing shiny tech like a magpie.
+            </p>
+            <a href="#">Read full article →</a>
+        </section>
+
+        <section class="posts">
+            <div class="post">
+                <small>Jan 12 · 6 min read</small>
+                <h3>Stop Overengineering Your Backend</h3>
+                <p>
+                    If your “MVP” needs Kafka, you’re already lost.
+                </p>
+                <a href="#">Read more →</a>
+            </div>
+
+            <div class="post">
+                <small>Jan 10 · 4 min read</small>
+                <h3>CSS Is Not Hard, You Just Avoid It</h3>
+                <p>
+                    Flexbox isn’t scary. You just never sat down and learned it.
+                </p>
+                <a href="#">Read more →</a>
+            </div>
+
+            <div class="post">
+                <small>Jan 08 · 7 min read</small>
+                <h3>Why Your Productivity System Is Failing</h3>
+                <p>
+                    Another Notion template won’t save you. Discipline might.
+                </p>
+                <a href="#">Read more →</a>
+            </div>
+        </section>
+    </main>
+
+    <aside>
+        <div class="side-card">
+            <h4>Popular Tags</h4>
+            <div class="tags">
+                <div class="tag">Web Dev</div>
+                <div class="tag">JavaScript</div>
+                <div class="tag">Startups</div>
+                <div class="tag">Career</div>
+                <div class="tag">Opinion</div>
+            </div>
+        </div>
+
+        <div class="side-card">
+            <h4>Trending</h4>
+            <p class="muted">
+                • How I Wasted 6 Months Rewriting the Same App<br><br>
+                • The Truth About “Clean Code”<br><br>
+                • Framework Fatigue Is Real
+            </p>
+        </div>
+    </aside>
+
+</div>
+
+<footer>
+    © 2026 Blogify — write first, refactor later.
+</footer>
+
+</body>
+</html>
