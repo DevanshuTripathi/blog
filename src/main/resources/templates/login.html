@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login — Blogify</title>
@@ -183,25 +183,18 @@
     <div class="logo">Blogify</div>
     <div class="subtitle">Welcome back. Go write something 🔥</div>
 
-    <form>
+    <form th:action="@{/login}" method="post" >
         <div>
-            <label>Email</label>
-            <input type="email" placeholder="you@internet.com" required>
+            <label>Username</label>
+            <input type="text" placeholder="blufftunic" name="username" required>
         </div>
 
         <div>
             <label>Password</label>
-            <input type="password" placeholder="••••••••" required>
+            <input type="password" placeholder="••••••••" name="password" required>
         </div>
 
-        <div class="actions">
-            <label>
-                <input type="checkbox"> Remember me
-            </label>
-            <a href="#">Forgot password?</a>
-        </div>
-
-        <button type="submit">Login</button>
+        <div><input type="submit" value="Sign In"/></div>
     </form>
 
     <div class="divider">

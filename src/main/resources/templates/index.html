@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Blogify — Write. Publish. Flex.</title>
@@ -157,7 +157,7 @@
         Blogify is a no-BS blogging platform for people who actually want to write,
         not fight with editors, themes, and random plugins.
     </p>
-    <a href="login" ><button>Start Writing Free</button></a>
+    <a th:href="@{/home}" ><button>Start Writing Free</button></a>
 </section>
 
 <section class="features">
