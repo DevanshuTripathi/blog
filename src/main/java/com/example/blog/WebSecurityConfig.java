@@ -22,11 +22,12 @@ public class WebSecurityConfig {
         // @formatter:off
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/", "/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);
@@ -38,12 +39,5 @@ public class WebSecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        String password = encoder.encode("password");
-        UserDetails user = User.withUsername("user").password(password).roles("USER").build();
-        return new InMemoryUserDetailsManager(user);
     }
 }

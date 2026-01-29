@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login — Blogify</title>
+    <title>Register — Blogify</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -31,10 +31,10 @@
             color: var(--text);
         }
 
-        .login-card {
+        .register-card {
             background: linear-gradient(180deg, #020617, var(--card));
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             padding: 36px;
             border-radius: 18px;
             border: 1px solid #1f2937;
@@ -82,25 +82,8 @@
             box-shadow: 0 0 0 2px rgba(56,189,248,0.15);
         }
 
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--muted);
-        }
-
-        .actions a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .actions a:hover {
-            text-decoration: underline;
-        }
-
         button {
-            margin-top: 10px;
+            margin-top: 12px;
             background: var(--accent);
             color: #020617;
             border: none;
@@ -117,61 +100,20 @@
             box-shadow: 0 12px 30px rgba(56,189,248,0.35);
         }
 
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 28px 0;
-            color: var(--muted);
-            font-size: 0.8rem;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #1f2937;
-        }
-
-        .divider span {
-            margin: 0 12px;
-        }
-
-        .alt-login {
-            display: grid;
-            gap: 12px;
-        }
-
-        .alt-btn {
-            background: #020617;
-            border: 1px solid #1f2937;
-            padding: 12px;
-            border-radius: 10px;
-            color: var(--text);
-            font-weight: 600;
-            cursor: pointer;
-            transition: border 0.2s ease, transform 0.2s ease;
-        }
-
-        .alt-btn:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-
-        .signup {
+        .footer-text {
             text-align: center;
             margin-top: 26px;
             font-size: 0.85rem;
             color: var(--muted);
         }
 
-        .signup a {
+        .footer-text a {
             color: var(--accent);
             text-decoration: none;
             font-weight: 600;
         }
 
-        .signup a:hover {
+        .footer-text a:hover {
             text-decoration: underline;
         }
     </style>
@@ -179,42 +121,29 @@
 
 <body>
 
-<div class="login-card">
+<div class="register-card">
     <div class="logo">Blogify</div>
-    <div class="subtitle">Welcome back. Go write something 🔥</div>
+    <div class="subtitle">Create your account and start writing ✍️</div>
 
-    <div th:if="${param.error}">
-        Invalid username and password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
+    <form th:action="@{/register}" method="post" th:object="${user}" >
 
-    <form th:action="@{/login}" method="post" >
+        <p th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
+
         <div>
             <label>Username</label>
-            <input type="text" placeholder="blufftunic" name="username" required>
+            <input type="text" th:field="*{username}" placeholder="blufftunic" required>
         </div>
 
         <div>
             <label>Password</label>
-            <input type="password" placeholder="••••••••" name="password" required>
+            <input type="password" th:field="*{password}" placeholder="••••••••" required>
         </div>
 
-        <div><input type="submit" value="Sign In"/></div>
+        <button type="submit">Create Account</button>
     </form>
 
-    <div class="divider">
-        <span>or</span>
-    </div>
-
-    <div class="alt-login">
-        <button class="alt-btn">Continue with Google</button>
-        <button class="alt-btn">Continue with GitHub</button>
-    </div>
-
-    <div class="signup">
-        Don’t have an account? <a th:href="@{/register}">Sign up</a>
+    <div class="footer-text">
+        Already have an account? <a th:href="@{/login}">Sign in</a>
     </div>
 </div>
 
