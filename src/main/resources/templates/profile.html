@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Blogify — Home</title>
+    <title>Blogify — Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -205,9 +205,9 @@
 <body>
 
 <header>
-    <div class="logo">Blogify</div>
+    <div class="logo" th:text="${user.username}" >Blogify</div>
     <nav>
-        <a href="#">Home</a>
+        <a th:href="@{/home}">Home</a>
         <a th:href="@{/write}">Write</a>
         <form th:action="@{/logout}" method="post">
             <button class="navicon" type="submit">Sign Out</button>
@@ -219,8 +219,8 @@
 
     <main>
         <section class="posts">
-            <div class="post" th:each="post : ${posts}" >
-                <small th:text="${post.user.username} + ' . ' + 'just now'">author . time</small>
+            <div class="post" th:each="post : ${user.posts}" >
+                <small th:text="${user.username} + ' . ' + 'just now'">author . time</small>
                 <h3 th:text="${post.subject}" >Post Title</h3>
                 <p th:text="${post.preview}">
                     Post preview

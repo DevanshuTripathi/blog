@@ -43,5 +43,4 @@ public class CustomAppUserDetailsService implements UserDetailsService {
 
         repo.save(registrationDetails);
     }
-
 }

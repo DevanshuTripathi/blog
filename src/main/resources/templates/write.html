@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Write — Blogify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card: #020617;
+            --accent: #38bdf8;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --border: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #1e293b, var(--bg));
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        nav a {
+            margin-left: 22px;
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 8%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .editor {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(180deg, #020617, var(--panel));
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        input, textarea {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            width: 100%;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(56,189,248,0.15);
+        }
+
+        .title-input {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        textarea {
+            min-height: 340px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .actions small {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        button {
+            background: var(--accent);
+            color: #020617;
+            border: none;
+            padding: 12px 26px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button.secondary {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            margin-right: 12px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(56,189,248,0.35);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Blogify</div>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/logout}">Logout</a>
+    </nav>
+</header>
+
+<main>
+    <form class="editor" th:object="${blog}" th:action="@{/posts/create}" method="post">
+
+        <p th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
+
+        <input
+                type="text"
+                name="title"
+                class="title-input"
+                placeholder="Your post title…"
+                th:field="*{subject}"
+                required
+        >
+
+
+        <textarea
+                name="content"
+                placeholder="Start writing your masterpiece here…"
+                th:field="*{body}"
+                required
+        ></textarea>
+
+        <div class="actions">
+            <small>Markdown supported • Autosave coming soon™</small>
+            <div>
+                <button type="submit">Publish</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+<footer>
+    © 2026 Blogify — write first, refactor later.
+</footer>
+
+</body>
+</html>

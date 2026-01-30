@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.subject} + ' — Blogify'">Blog — Blogify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card: #020617;
+            --accent: #38bdf8;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --border: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        nav a {
+            margin-left: 22px;
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        main {
+            flex: 1;
+            padding: 50px 8%;
+            display: flex;
+            justify-content: center;
+        }
+
+        article {
+            width: 100%;
+            max-width: 780px;
+            background: linear-gradient(180deg, #020617, var(--panel));
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 40px;
+        }
+
+        .post-header {
+            margin-bottom: 28px;
+        }
+
+        .post-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .tags {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--muted);
+        }
+
+        .content {
+            margin-top: 36px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .content h2 {
+            margin: 40px 0 16px;
+            font-size: 1.6rem;
+        }
+
+        .content h3 {
+            margin: 30px 0 14px;
+            font-size: 1.3rem;
+        }
+
+        .content blockquote {
+            margin: 24px 0;
+            padding: 16px 20px;
+            background: #020617;
+            border-left: 4px solid var(--accent);
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .content code {
+            background: #020617;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .content pre {
+            background: #020617;
+            padding: 16px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            article {
+                padding: 28px;
+            }
+
+            .post-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Blogify</div>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/write}">Write</a>
+        <a th:href="@{/profile}">Profile</a>
+    </nav>
+</header>
+
+<main>
+    <article>
+
+        <div class="post-header">
+            <h1 class="post-title" th:text="${post.subject}">
+                Why Most Developers Never Finish Their Side Projects
+            </h1>
+
+            <div class="post-meta">
+                <a th:href="@{/user/{id}(id=${post.user.username})}" th:text="${post.user.username}">blufftunic</a>
+
+<!--                <span th:text="${#temporals.format(post.createdAt, 'MMM dd, yyyy')}">-->
+<!--                    Jan 12, 2026-->
+<!--                </span>-->
+
+<!--                <span th:text="${post.readTime + ' min read'}">6 min read</span>-->
+            </div>
+
+<!--            <div class="tags">-->
+<!--                <span class="tag" th:each="tag : ${post.tags}" th:text="${tag}">-->
+<!--                    Web Dev-->
+<!--                </span>-->
+<!--            </div>-->
+        </div>
+
+        <div class="content" th:utext="${post.body}">
+            Hi
+        </div>
+
+    </article>
+</main>
+
+<footer>
+    © 2026 Blogify — fewer excuses, more shipping.
+</footer>
+
+</body>
+</html>

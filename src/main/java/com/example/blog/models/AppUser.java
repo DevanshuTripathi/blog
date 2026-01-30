@@ -2,6 +2,9 @@ package com.example.blog.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class AppUser {
 
@@ -11,6 +14,9 @@ public class AppUser {
 
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Blog> posts = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -34,5 +40,17 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Blog> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Blog> posts) {
+        this.posts = posts;
+    }
+
+    public void addPost(Blog blog) {
+        posts.add(blog);
     }
 }
